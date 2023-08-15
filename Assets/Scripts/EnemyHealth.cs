@@ -7,9 +7,11 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int health;
     [SerializeField] ScoreManager scoreManager;
+    Enemy enemy;
 
     private void Start()
     {
+        enemy = GetComponent<Enemy>();
         scoreManager = FindObjectOfType<ScoreManager>();
         health = PersistentData.enemyHealthPoints;
     }
@@ -22,7 +24,6 @@ public class EnemyHealth : MonoBehaviour
             //morir
             Death();
         }
-        Debug.Log(health);
     }
 
     private void Death()
@@ -32,6 +33,6 @@ public class EnemyHealth : MonoBehaviour
         //animacion
         //restar una vida
         //sumar un punto
-        scoreManager.AddScore(1);
+        scoreManager.AddScore(enemy.enemyData.scorePoints);
     }
 }
